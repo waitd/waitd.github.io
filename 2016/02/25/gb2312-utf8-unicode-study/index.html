@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="每天还是要花点时间来总结的"><meta name="google-site-verification" content="6GTeiOhqimfTtuUIQtS8CqdXJzM4lPPMeXjbvNAsm5w"><title>gb2312,utf8,unicode编码占用空间学习 | 自省|反思</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/normalize.min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/pure-min.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css?v=0.0.0"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="/js/jquery.min.js?v=0.0.0"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">gb2312,utf8,unicode编码占用空间学习</h1><a id="logo" href="/.">自省|反思</a><p class="description">How many things have you done to make your life better?</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">gb2312,utf8,unicode编码占用空间学习</h1><div class="post-content"><p>废话少说，用实例说话：</p>
+<p>比如<code>我的Mac</code>，在unicode字符集中的编码表是(<a href="http://unicode-table.com/en/" target="_blank" rel="external">传送门</a>)：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">我 <span class="number">6211</span></div><div class="line">的 <span class="number">7684</span></div><div class="line">M  <span class="number">004</span>D</div><div class="line">a  <span class="number">0061</span></div><div class="line">c  <span class="number">0063</span></div></pre></td></tr></table></figure></p>
+<p>由于unicode中，每个字符都是用两个字节来编码的(字母也是)，所以按照unicode的要求来存储的话，就是这样的：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">我 <span class="number">01100010</span> <span class="number">00010001</span></div><div class="line">的 <span class="number">01110110</span> <span class="number">10000100</span></div><div class="line">M  <span class="number">00000000</span> <span class="number">01001101</span></div><div class="line">a  <span class="number">00000000</span> <span class="number">01100001</span></div><div class="line">c  <span class="number">00000000</span> <span class="number">01100011</span></div></pre></td></tr></table></figure></p>
+<p>一共占用10个字节。其中英文字母前8位都是0.一个文件中如果英文相当的多，采取这种编码方式保存的话，可见相当的浪费存储空间。</p>
+<p>而按照utf-8的编码来存储的话，就是这样的：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">我 <span class="number">11100110</span> <span class="number">10001000</span> <span class="number">10010001</span></div><div class="line">的 <span class="number">11100111</span> <span class="number">10011010</span> <span class="number">10000100</span></div><div class="line">M  <span class="number">01001101</span></div><div class="line">a  <span class="number">01100001</span></div><div class="line">c  <span class="number">01100011</span></div></pre></td></tr></table></figure></p>
+<p>一共占用9个字节。<br>utf-8是变长的，它的编码规则是这样的：<br><a href="https://en.wikipedia.org/wiki/UTF-8#Description" target="_blank" rel="external">https://en.wikipedia.org/wiki/UTF-8#Description</a>.简单的说来就是：</p>
+<blockquote>
+<ol>
+<li>单字节的字符，字节的第一位设为0，对于英语文本，UTF-8码只占用一个字节，和ASCII码完全相同；</li>
+<li>n个字节的字符(n&gt;1)，第一个字节的前n位设为1，第n+1位设为0，后面字节的前两位都设为10，这n个字节的其余空位填充该字符unicode码，高位用0补足。</li>
+</ol>
+</blockquote>
+<p>所以utf-8的存储格式是这样的：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>xxxxxxx</div><div class="line"><span class="number">110</span>xxxxx <span class="number">10</span>xxxxxx</div><div class="line"><span class="number">1110</span>xxxx <span class="number">10</span>xxxxxx <span class="number">10</span>xxxxxx</div><div class="line"><span class="number">11110</span>xxx <span class="number">10</span>xxxxxx <span class="number">10</span>xxxxxx <span class="number">10</span>xxxxxx</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p><code>我的Mac</code>的gb2312(gbk是gb2312的扩展集,k表示扩展的意思,因为<code>扩</code>的拼音是<code>kuo</code>)编码为:(<a href="http://www.cs.nyu.edu/~yusuke/tools/unicode_to_gb2312_or_gbk_table.html" target="_blank" rel="external">传送门</a>)<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">我 ced2</div><div class="line">的 b5c4</div><div class="line">M  <span class="number">4</span>d</div><div class="line">a  <span class="number">61</span></div><div class="line">c  <span class="number">63</span></div></pre></td></tr></table></figure></p>
+<p>二进制存储格式为:<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">我 <span class="number">11001110</span> <span class="number">11010010</span></div><div class="line">的 <span class="number">10110101</span> <span class="number">11000100</span></div><div class="line">M  <span class="number">01001101</span></div><div class="line">a  <span class="number">01100001</span></div><div class="line">c  <span class="number">01100011</span></div></pre></td></tr></table></figure></p>
+<p>和Unicode一样，占用7个字节.因为gb2312对于高位是0的，会用1个字节来存储，对于高位是1的，会用两个字节来存储.</p>
+<table>
+<thead>
+<tr>
+<th>编码方式</th>
+<th>所在字符集编码</th>
+<th>二进制</th>
+<th>存储空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unicode</td>
+<td>6211<br>7684<br>004D<br>0061<br>0063</td>
+<td>01100010 00010001<br>01110110 10000100<br>00000000 01001101<br>00000000 01100001<br>00000000 01100011</td>
+<td>10</td>
+</tr>
+<tr>
+<td><em>utf8</em></td>
+<td>6211<br>7684<br>004D<br>0061<br>0063</td>
+<td>11100110 10001000 10010001<br>11100111 10011010 10000100<br>01001101<br>01100001<br>01100011</td>
+<td>9</td>
+</tr>
+<tr>
+<td><em>gb2312</em></td>
+<td>ced2<br>b5c4<br>4d<br>61<br>63</td>
+<td>11001110 11010010<br>10110101 11000100<br>01001101<br>01100001<br>01100011</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-thread-key="2016/02/25/gb2312-utf8-unicode-study/" data-title="gb2312,utf8,unicode编码占用空间学习" data-url="http://yoursite.com/2016/02/25/gb2312-utf8-unicode-study/" data-author-key="1" class="ds-thread"></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">自省|反思.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var duoshuoQuery = {short_name:'waitd'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
