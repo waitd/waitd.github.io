@@ -4,9 +4,9 @@
   <subtitle>How many things have you done to make your life better?</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://code.waitdding.com/"/>
   <updated>2016-10-23T09:40:21.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://code.waitdding.com/</id>
   
   <author>
     <name>Waitd</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>使用jetty开发Web项目并布署到tomcat7</title>
-    <link href="http://yoursite.com/2016/04/13/build-webapp-with-jetty-and-deploy-to-tomcat/"/>
-    <id>http://yoursite.com/2016/04/13/build-webapp-with-jetty-and-deploy-to-tomcat/</id>
+    <link href="http://code.waitdding.com/2016/04/13/build-webapp-with-jetty-and-deploy-to-tomcat/"/>
+    <id>http://code.waitdding.com/2016/04/13/build-webapp-with-jetty-and-deploy-to-tomcat/</id>
     <published>2016-04-13T03:42:00.000Z</published>
     <updated>2016-10-23T09:40:21.000Z</updated>
     
@@ -63,21 +63,21 @@
     
     </summary>
     
-      <category term="android" scheme="http://yoursite.com/categories/android/"/>
+      <category term="android" scheme="http://code.waitdding.com/categories/android/"/>
     
     
-      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+      <category term="android" scheme="http://code.waitdding.com/tags/android/"/>
     
-      <category term="jetty" scheme="http://yoursite.com/tags/jetty/"/>
+      <category term="jetty" scheme="http://code.waitdding.com/tags/jetty/"/>
     
-      <category term="tomcat" scheme="http://yoursite.com/tags/tomcat/"/>
+      <category term="tomcat" scheme="http://code.waitdding.com/tags/tomcat/"/>
     
   </entry>
   
   <entry>
     <title>gb2312,utf8,unicode编码占用空间学习</title>
-    <link href="http://yoursite.com/2016/02/25/gb2312-utf8-unicode-study/"/>
-    <id>http://yoursite.com/2016/02/25/gb2312-utf8-unicode-study/</id>
+    <link href="http://code.waitdding.com/2016/02/25/gb2312-utf8-unicode-study/"/>
+    <id>http://code.waitdding.com/2016/02/25/gb2312-utf8-unicode-study/</id>
     <published>2016-02-24T16:00:00.000Z</published>
     <updated>2016-10-23T09:40:18.000Z</updated>
     
@@ -136,17 +136,17 @@
     
     </summary>
     
-      <category term="study" scheme="http://yoursite.com/categories/study/"/>
+      <category term="study" scheme="http://code.waitdding.com/categories/study/"/>
     
     
-      <category term="file-encoding" scheme="http://yoursite.com/tags/file-encoding/"/>
+      <category term="file-encoding" scheme="http://code.waitdding.com/tags/file-encoding/"/>
     
   </entry>
   
   <entry>
     <title>【分享】查看sqlserver2008中当前正在执行的任务</title>
-    <link href="http://yoursite.com/2015/12/01/view-current-running-job-on-sqlserver2008/"/>
-    <id>http://yoursite.com/2015/12/01/view-current-running-job-on-sqlserver2008/</id>
+    <link href="http://code.waitdding.com/2015/12/01/view-current-running-job-on-sqlserver2008/"/>
+    <id>http://code.waitdding.com/2015/12/01/view-current-running-job-on-sqlserver2008/</id>
     <published>2015-11-30T16:00:00.000Z</published>
     <updated>2016-10-23T09:40:07.000Z</updated>
     
@@ -159,17 +159,17 @@
     
     </summary>
     
-      <category term="db" scheme="http://yoursite.com/categories/db/"/>
+      <category term="db" scheme="http://code.waitdding.com/categories/db/"/>
     
     
-      <category term="sqlserver" scheme="http://yoursite.com/tags/sqlserver/"/>
+      <category term="sqlserver" scheme="http://code.waitdding.com/tags/sqlserver/"/>
     
   </entry>
   
   <entry>
     <title>sqlserver 迁移历史数据脚本</title>
-    <link href="http://yoursite.com/2015/11/29/move-data-to-history/"/>
-    <id>http://yoursite.com/2015/11/29/move-data-to-history/</id>
+    <link href="http://code.waitdding.com/2015/11/29/move-data-to-history/"/>
+    <id>http://code.waitdding.com/2015/11/29/move-data-to-history/</id>
     <published>2015-11-28T16:00:00.000Z</published>
     <updated>2016-10-23T09:40:26.000Z</updated>
     
@@ -189,12 +189,12 @@
     
     </summary>
     
-      <category term="db" scheme="http://yoursite.com/categories/db/"/>
+      <category term="db" scheme="http://code.waitdding.com/categories/db/"/>
     
     
-      <category term="sqlserver" scheme="http://yoursite.com/tags/sqlserver/"/>
+      <category term="sqlserver" scheme="http://code.waitdding.com/tags/sqlserver/"/>
     
-      <category term="历史数据迁移" scheme="http://yoursite.com/tags/%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/"/>
+      <category term="历史数据迁移" scheme="http://code.waitdding.com/tags/%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/"/>
     
   </entry>
   
